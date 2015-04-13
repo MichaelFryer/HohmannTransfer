@@ -76,9 +76,9 @@ namespace Hohmann_Transfer
                 selectedBody.GravityParameter);
             
             // Display results
-            txtFirstBurn.Text = Math.Abs(ht.V1).ToString("0.0000");
-            txtSecondBurn.Text = Math.Abs(ht.V2).ToString("0.0000");
-            txtTotal.Text = Math.Abs(ht.V1 + ht.V2).ToString("0.0000");
+            txtFirstBurn.Text = Math.Abs(ht.V1).ToString("0.00");
+            txtSecondBurn.Text = Math.Abs(ht.V2).ToString("0.00");
+            txtTotal.Text = Math.Abs(ht.V1 + ht.V2).ToString("0.00");
         }
 
     }

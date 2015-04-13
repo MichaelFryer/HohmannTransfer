@@ -232,7 +232,7 @@
             this.cbBody.Size = new System.Drawing.Size(121, 21);
             this.cbBody.TabIndex = 18;
             // 
-            // HohmannTransfer
+            // HohmannTransferUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -257,7 +257,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtInitOrb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "HohmannTransfer";
+            this.Name = "HohmannTransferUI";
             this.Text = "Hohmann Transfer Calculator";
             this.ResumeLayout(false);
             this.PerformLayout();

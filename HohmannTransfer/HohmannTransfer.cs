@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace Hohmann_Transfer
 {
-    class HohmannTransfer
+    public class HohmannTransfer
     {
         private double v1; 
         private double v2;
@@ -30,16 +30,15 @@ namespace Hohmann_Transfer
         private double r2;
         private double u;
 
-        /// <summary>Description for SomeMethod.</summary>
-        /// <param name="s"> Parameter description for s goes here</param>
-        /// <seealso cref="String">
-        /// You can use the cref attribute on any tag to reference a type or member 
-        /// and the compiler will check that the reference exists. </seealso>
+        /// <summary>Calculate delta-v requirements for a Hohmann transfer</summary>
+        /// <param name="r1">Initial circular orbit radius</param>
+        /// <param name="r2">Final circular orbit radius</param>
+        /// <param name="u">Standard gravity parameter for parent body</param>
         public HohmannTransfer(double r1, double r2, double u)
         {
-            this.r1 = r1;
-            this.r2 = r2;
-            this.u = u;
+            R1 = r1;
+            R2 = r2;
+            U = u;
             Update();
         }
 
@@ -53,18 +52,45 @@ namespace Hohmann_Transfer
 
         /// <summary>
         /// Radius of the initial circular orbit </summary>
-        /// <value>
-        /// Radius of the initial circular orbit in m</value>
-        public double R1 { get { return r1; } set { r1 = value; Update(); } }
+        public double R1 { get { return r1; } 
+            set {
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException("r1", "Initial orbit radius must be greater than 0");
+                r1 = value; 
+                Update(); 
+            } 
+        }
 
         /// <summary>
-        /// Radius of the desired circular orbit </summary>
-        public double R2 { get { return r2; } set { r2 = value; Update(); } }
+        /// Radius of the initial circular orbit </summary>
+        public double R2
+        {
+            get { return r2; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException("r2", "Final orbit radius must be greater than 0");
+                r2 = value; 
+                Update();
+            }
+        }
 
         /// <summary>
-        /// Standard gravitational parameter of the parent body </summary>
-        public double U { get { return u; } set { u = value; Update(); } }
+        /// Radius of the initial circular orbit </summary>
+        public double U
+        {
+            get { return u; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentOutOfRangeException("u", "Standard gravitational paremeter must be greater than 0");
+                u = value; 
+                Update();
+            }
+        }
 
+        /// <summary>
+        /// Calculate v1 and v2 based on current r1, r2 and u</summary>
         private void Update()
         {
             v1 = Math.Sqrt(u / r1) * (Math.Sqrt((2 * r2) / (r1 + r2)) - 1);
